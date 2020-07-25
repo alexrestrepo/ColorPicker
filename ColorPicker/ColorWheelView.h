@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ColorWheelView : UIControl
 
 @property (nonatomic, strong) UIColor *selectedColor;
+@property (nonatomic, strong, readonly) UIView *borderView;
+
 - (void)setSelectedColor:(UIColor *)selectedColor animated:(BOOL)animated;
 
 @end
