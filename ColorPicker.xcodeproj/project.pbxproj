@@ -13,6 +13,7 @@
 		FAE9E57324CAA42A008DC28F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE9E57124CAA42A008DC28F /* LaunchScreen.storyboard */; };
 		FAE9E57624CAA42A008DC28F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E57524CAA42A008DC28F /* main.m */; };
 		FAE9E57E24CAA570008DC28F /* ColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E57D24CAA570008DC28F /* ColorWheelView.m */; };
+		FAE9E58424CBCEB6008DC28F /* ColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E58324CBCEB6008DC28F /* ColorSlider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		FAE9E57524CAA42A008DC28F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAE9E57C24CAA570008DC28F /* ColorWheelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWheelView.h; sourceTree = "<group>"; };
 		FAE9E57D24CAA570008DC28F /* ColorWheelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorWheelView.m; sourceTree = "<group>"; };
+		FAE9E58224CBCEB6008DC28F /* ColorSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorSlider.h; sourceTree = "<group>"; };
+		FAE9E58324CBCEB6008DC28F /* ColorSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,14 +66,24 @@
 				FAE9E56424CAA428008DC28F /* AppDelegate.m */,
 				FAE9E56924CAA428008DC28F /* ViewController.h */,
 				FAE9E56A24CAA428008DC28F /* ViewController.m */,
-				FAE9E57C24CAA570008DC28F /* ColorWheelView.h */,
-				FAE9E57D24CAA570008DC28F /* ColorWheelView.m */,
+				FAE9E58124CBCD4B008DC28F /* New Group */,
 				FAE9E56F24CAA42A008DC28F /* Assets.xcassets */,
 				FAE9E57124CAA42A008DC28F /* LaunchScreen.storyboard */,
 				FAE9E57424CAA42A008DC28F /* Info.plist */,
 				FAE9E57524CAA42A008DC28F /* main.m */,
 			);
 			path = ColorPicker;
+			sourceTree = "<group>";
+		};
+		FAE9E58124CBCD4B008DC28F /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				FAE9E57C24CAA570008DC28F /* ColorWheelView.h */,
+				FAE9E57D24CAA570008DC28F /* ColorWheelView.m */,
+				FAE9E58224CBCEB6008DC28F /* ColorSlider.h */,
+				FAE9E58324CBCEB6008DC28F /* ColorSlider.m */,
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +158,7 @@
 				FAE9E56B24CAA428008DC28F /* ViewController.m in Sources */,
 				FAE9E56524CAA428008DC28F /* AppDelegate.m in Sources */,
 				FAE9E57E24CAA570008DC28F /* ColorWheelView.m in Sources */,
+				FAE9E58424CBCEB6008DC28F /* ColorSlider.m in Sources */,
 				FAE9E57624CAA42A008DC28F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,7 +227,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -265,7 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -280,7 +294,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ZZ8U23J38;
 				INFOPLIST_FILE = ColorPicker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ZZ8U23J38;
 				INFOPLIST_FILE = ColorPicker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

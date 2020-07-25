@@ -10,6 +10,7 @@
 
 @interface FloatingColorIndicator : UIView
 @property (nonatomic, strong) UIView *colorView;
+@property (nonatomic, strong) UIColor *color;
 @end
 
 @implementation FloatingColorIndicator
@@ -58,6 +59,15 @@
     }
     return self;
 }
+
+- (void)setColor:(UIColor *)color {
+    _colorView.backgroundColor = color;
+}
+
+- (UIColor *)color {
+    return _colorView.backgroundColor;
+}
+
 @end
 
 @interface ColorWheelView ()
@@ -68,6 +78,8 @@
 
 @property (nonatomic, assign) CGFloat radius;
 @property (nonatomic, assign) CGFloat value;
+@property (nonatomic, assign) CGFloat touchRadius;
+@property (nonatomic, assign) CGPoint lastPoint;
 @end
 
 @implementation ColorWheelView
@@ -142,12 +154,7 @@
         _floatingColorView.hidden = YES;
         [self addSubview:_floatingColorView];
 
-        _colorWheelFilter = [CIFilter filterWithName:@"CIHueSaturationValueGradient"
-                                 withInputParameters:@{
-                                     @"inputSoftness" : @(0),
-                                     @"inputValue" : @(1)
-                                 }];
-        
+        _colorWheelFilter = [CIFilter filterWithName:@"CIHueSaturationValueGradient"];
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -161,11 +168,11 @@
     self.radius = CGRectGetMidX(_colorWheelImageView.bounds);
 
     [self updateSelectionView];
-    _floatingColorView.colorView.backgroundColor = _selectedColor;
+    _floatingColorView.color = _selectedColor;
     _floatingColorView.center = CGPointMake(_selectionView.center.x,
                                             _selectionView.center.y
                                             - CGRectGetMidY(_floatingColorView.bounds)
-                                            - CGRectGetMidY(_selectionView.bounds) - 3.0);
+                                            - _touchRadius);
 }
 
 - (CGFloat)radius {
@@ -173,7 +180,7 @@
 }
 
 - (void)setRadius:(CGFloat)radius {
-    if (ABS(radius - self.radius) < CGFLOAT_MIN) {
+    if (ABS(radius - self.radius) <= CGFLOAT_MIN) {
         return;
     }
 
@@ -186,6 +193,10 @@
 }
 
 - (void)setValue:(CGFloat)value {
+    if (ABS(value - self.value) <= CGFLOAT_MIN) {
+        return;
+    }
+
     [_colorWheelFilter setValue:@(value) forKey:@"inputValue"];
     _colorWheelImageView.image = [UIImage imageWithCIImage:_colorWheelFilter.outputImage];
 }
@@ -223,9 +234,15 @@
     CGFloat y = center.y - sin(angle) * radius;
 
     _selectionView.center = CGPointMake(x, y);
+    self.value = value;
 }
 
 - (void)mapPointToColor:(CGPoint)point {
+    if (CGPointEqualToPoint(point, _lastPoint)) {
+        return;
+    }
+
+    _lastPoint = point;
     CGFloat radius = CGRectGetMidX(_colorWheelImageView.bounds);
     CGPoint center = CGPointMake(radius,
                                  CGRectGetMidY(_colorWheelImageView.bounds));
@@ -243,6 +260,13 @@
 
     if (dist < 8.0) {
         saturation = 0.0; // snap to center
+
+        // this is dumb but meh.
+        CGFloat s = 0.0;
+        [_selectedColor getHue:NULL saturation:&s brightness:NULL alpha:NULL];
+        if (ABS(saturation - s) > CGFLOAT_MIN) {
+            [_delegate colorWheelViewDidSnapToCenter:self];
+        }
     }
 
     if (point.x < center.x) {
@@ -260,12 +284,14 @@
 #pragma mark - UIControl
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
-    _floatingColorView.hidden = NO;
+    _touchRadius = touch.majorRadius;
+    _lastPoint = CGPointZero;
     return CGRectContainsPoint(_colorWheelImageView.frame, [touch locationInView:_colorWheelImageView]);
 }
 
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     [self mapPointToColor:[touch locationInView:_colorWheelImageView]];
+    _floatingColorView.hidden = touch.type == UITouchTypePencil;
     return YES;
 }
 
