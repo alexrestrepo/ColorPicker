@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAC9166026139D9000A6CCFB /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC9165F26139D9000A6CCFB /* PickerViewController.m */; };
 		FAE9E56524CAA428008DC28F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E56424CAA428008DC28F /* AppDelegate.m */; };
 		FAE9E56B24CAA428008DC28F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E56A24CAA428008DC28F /* ViewController.m */; };
 		FAE9E57024CAA42A008DC28F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE9E56F24CAA42A008DC28F /* Assets.xcassets */; };
@@ -14,9 +15,12 @@
 		FAE9E57624CAA42A008DC28F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E57524CAA42A008DC28F /* main.m */; };
 		FAE9E57E24CAA570008DC28F /* ColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E57D24CAA570008DC28F /* ColorWheelView.m */; };
 		FAE9E58424CBCEB6008DC28F /* ColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E58324CBCEB6008DC28F /* ColorSlider.m */; };
+		FAE9E58B24CC034C008DC28F /* ColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE9E58A24CC034C008DC28F /* ColorPicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FAC9165E26139D9000A6CCFB /* PickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
+		FAC9165F26139D9000A6CCFB /* PickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
 		FAE9E56024CAA428008DC28F /* ColorPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE9E56324CAA428008DC28F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FAE9E56424CAA428008DC28F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,6 +34,8 @@
 		FAE9E57D24CAA570008DC28F /* ColorWheelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorWheelView.m; sourceTree = "<group>"; };
 		FAE9E58224CBCEB6008DC28F /* ColorSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorSlider.h; sourceTree = "<group>"; };
 		FAE9E58324CBCEB6008DC28F /* ColorSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorSlider.m; sourceTree = "<group>"; };
+		FAE9E58924CC034C008DC28F /* ColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPicker.h; sourceTree = "<group>"; };
+		FAE9E58A24CC034C008DC28F /* ColorPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorPicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +72,9 @@
 				FAE9E56424CAA428008DC28F /* AppDelegate.m */,
 				FAE9E56924CAA428008DC28F /* ViewController.h */,
 				FAE9E56A24CAA428008DC28F /* ViewController.m */,
-				FAE9E58124CBCD4B008DC28F /* New Group */,
+				FAC9165E26139D9000A6CCFB /* PickerViewController.h */,
+				FAC9165F26139D9000A6CCFB /* PickerViewController.m */,
+				FAE9E58124CBCD4B008DC28F /* ColorPicker */,
 				FAE9E56F24CAA42A008DC28F /* Assets.xcassets */,
 				FAE9E57124CAA42A008DC28F /* LaunchScreen.storyboard */,
 				FAE9E57424CAA42A008DC28F /* Info.plist */,
@@ -75,15 +83,17 @@
 			path = ColorPicker;
 			sourceTree = "<group>";
 		};
-		FAE9E58124CBCD4B008DC28F /* New Group */ = {
+		FAE9E58124CBCD4B008DC28F /* ColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				FAE9E58924CC034C008DC28F /* ColorPicker.h */,
+				FAE9E58A24CC034C008DC28F /* ColorPicker.m */,
 				FAE9E57C24CAA570008DC28F /* ColorWheelView.h */,
 				FAE9E57D24CAA570008DC28F /* ColorWheelView.m */,
 				FAE9E58224CBCEB6008DC28F /* ColorSlider.h */,
 				FAE9E58324CBCEB6008DC28F /* ColorSlider.m */,
 			);
-			name = "New Group";
+			name = ColorPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +170,8 @@
 				FAE9E57E24CAA570008DC28F /* ColorWheelView.m in Sources */,
 				FAE9E58424CBCEB6008DC28F /* ColorSlider.m in Sources */,
 				FAE9E57624CAA42A008DC28F /* main.m in Sources */,
+				FAC9166026139D9000A6CCFB /* PickerViewController.m in Sources */,
+				FAE9E58B24CC034C008DC28F /* ColorPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +239,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -279,7 +291,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -294,7 +306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ZZ8U23J38;
 				INFOPLIST_FILE = ColorPicker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +324,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ZZ8U23J38;
 				INFOPLIST_FILE = ColorPicker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

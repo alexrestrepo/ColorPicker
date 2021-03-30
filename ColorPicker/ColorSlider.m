@@ -15,6 +15,8 @@
 @property (nonatomic, assign) CGFloat value;
 @end
 
+const CGFloat SliderHeight = 36.0f;
+
 @implementation SimpleSlider
 + (Class)layerClass {
     return [CAGradientLayer class];
@@ -33,26 +35,45 @@
         _thumbView.layer.borderWidth = 3;
         _thumbView.layer.borderColor = UIColor.whiteColor.CGColor;
         _thumbView.layer.cornerRadius = CGRectGetMidY(_thumbView.bounds);
+        _thumbView.layer.shadowOffset = CGSizeMake(0, 0);
+        _thumbView.layer.shadowRadius = 3.0;
+        _thumbView.layer.shadowOpacity = 0.2;
         [_thumbContainerView addSubview:_thumbView];
 
-        CAGradientLayer *layer = (id)self.layer;
-        layer.startPoint = CGPointMake(0.0, 0.5);
-        layer.endPoint = CGPointMake(1.0, 0.5);
-        layer.cornerRadius = CGRectGetMidY(self.bounds);
+        self.layer.cornerRadius = CGRectGetMidY(self.bounds);
     }
     return self;
+}
+
+- (void)setFrame:(CGRect)bounds {
+    [super setFrame:CGRectMake(bounds.origin.x,
+                               bounds.origin.y,
+                               bounds.size.width,
+                               SliderHeight)];
+}
+
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(UIViewNoIntrinsicMetric, SliderHeight);
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    return CGSizeMake(size.width, SliderHeight);
 }
 
 - (void)layoutSubviews {
     _thumbContainerView.frame = CGRectInset(self.bounds, CGRectGetMidY(self.bounds), 0);
     _thumbView.center = CGPointMake(CGRectGetWidth(_thumbContainerView.bounds) * _value, CGRectGetMidY(_thumbContainerView.bounds));
+
+    CAGradientLayer *layer = (id)self.layer;
+    layer.startPoint = CGPointMake(CGRectGetMinX(_thumbContainerView.frame) / CGRectGetWidth(self.bounds), 0.5);
+    layer.endPoint = CGPointMake(CGRectGetMaxX(_thumbContainerView.frame) / CGRectGetWidth(self.bounds), 0.5);
 }
 
 - (void)setValue:(CGFloat)value {
     if (ABS(_value - value) <= CGFLOAT_MIN) {
         return;
     }
-    _value = value;    
+    _value = value;
     [self setNeedsLayout];
 }
 
@@ -91,13 +112,6 @@
     return self;
 }
 
-- (void)setFrame:(CGRect)bounds {
-    [super setFrame:CGRectMake(bounds.origin.x,
-                               bounds.origin.y,
-                               bounds.size.width,
-                               36.0)];
-}
-
 - (void)setSelectedColor:(UIColor *)selectedColor {
     CGFloat h = 0, s = 0, b = 0;
     [selectedColor getHue:&h saturation:&s brightness:&b alpha:NULL];
@@ -134,14 +148,12 @@
     static dispatch_once_t onceToken;
     static UIImage *image = nil;
     dispatch_once(&onceToken, ^{
-        if (@available(iOS 10.0, *)) {
-            UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(24, 24)];
-            image = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
-                [[UIColor colorWithWhite:0.800 alpha:1.000] setFill];
-                UIRectFill(CGRectMake(0, 0, 12, 12));
-                UIRectFill(CGRectMake(12, 12, 12, 12));
-            }];
-        }
+        UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(24, 24)];
+        image = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
+            [[UIColor colorWithWhite:0.8 alpha:1.0] setFill];
+            UIRectFill(CGRectMake(0, 0, 12, 12));
+            UIRectFill(CGRectMake(12, 12, 12, 12));
+        }];
     });
     return image;
 }

@@ -11,13 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ColorWheelViewDelegate;
+
+NS_CLASS_AVAILABLE_IOS(10.0)
 @interface ColorWheelView : UIControl
 
 @property (nonatomic, strong) UIColor *selectedColor;
 @property (nonatomic, weak) id <ColorWheelViewDelegate> delegate;
 @property (nonatomic, strong, readonly) UIView *borderView;
-
-- (void)setSelectedColor:(UIColor *)selectedColor animated:(BOOL)animated;
 
 @end
 

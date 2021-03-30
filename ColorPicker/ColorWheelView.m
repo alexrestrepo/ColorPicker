@@ -88,46 +88,44 @@
     static dispatch_once_t onceToken;
     static UIImage *image = nil;
     dispatch_once(&onceToken, ^{
-        if (@available(iOS 10.0, *)) {
-            UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(19, 19)];
-            image = [renderer imageWithActions:^(UIGraphicsImageRendererContext *rendererContext) {
-                const CGFloat scale = rendererContext.currentImage.scale;
-                const CGFloat hairline = 1.0 / scale;
-                const BOOL needsPadding = ((int)(CGRectGetWidth(rendererContext.format.bounds) * scale) % 2 == 0);
-                const CGRect bounds = (needsPadding
-                                       ? CGRectInset(rendererContext.format.bounds,
-                                                     hairline / scale,
-                                                     hairline / scale)
-                                       : rendererContext.format.bounds);
-
-                const CGFloat fudge = needsPadding ? hairline / scale : 0;
-                CGRect rect = CGRectOffset(CGRectInset(bounds, 4 - hairline / 2.0, 4 - hairline / 2.0), -fudge, -fudge);
-                UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
-                path.lineWidth = hairline;
-
-                [[UIColor blackColor] setStroke];
-                [path stroke];
-
-                CGContextRef ctx = rendererContext.CGContext;
-                CGContextSetLineWidth(ctx, hairline);
-                // horizontal
-                CGContextMoveToPoint(ctx,
-                                     0,
-                                     CGRectGetMidY(bounds) - fudge);
-                CGContextAddLineToPoint(ctx,
-                                        CGRectGetMaxX(bounds) - fudge,
-                                        CGRectGetMidY(bounds) - fudge);
-
-                // vertical
-                CGContextMoveToPoint(ctx,
-                                     CGRectGetMidX(bounds) - fudge,
-                                     0);
-                CGContextAddLineToPoint(ctx,
-                                        CGRectGetMidX(bounds) - fudge,
-                                        CGRectGetMaxY(bounds) - fudge);
-                CGContextStrokePath(ctx);
-            }];
-        }
+        UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(19, 19)];
+        image = [renderer imageWithActions:^(UIGraphicsImageRendererContext *rendererContext) {
+            const CGFloat scale = rendererContext.currentImage.scale;
+            const CGFloat hairline = 1.0 / scale;
+            const BOOL needsPadding = ((int)(CGRectGetWidth(rendererContext.format.bounds) * scale) % 2 == 0);
+            const CGRect bounds = (needsPadding
+                                   ? CGRectInset(rendererContext.format.bounds,
+                                                 hairline / scale,
+                                                 hairline / scale)
+                                   : rendererContext.format.bounds);
+            
+            const CGFloat fudge = needsPadding ? hairline / scale : 0;
+            CGRect rect = CGRectOffset(CGRectInset(bounds, 4 - hairline / 2.0, 4 - hairline / 2.0), -fudge, -fudge);
+            UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
+            path.lineWidth = hairline;
+            
+            [[UIColor blackColor] setStroke];
+            [path stroke];
+            
+            CGContextRef ctx = rendererContext.CGContext;
+            CGContextSetLineWidth(ctx, hairline);
+            // horizontal
+            CGContextMoveToPoint(ctx,
+                                 0,
+                                 CGRectGetMidY(bounds) - fudge);
+            CGContextAddLineToPoint(ctx,
+                                    CGRectGetMaxX(bounds) - fudge,
+                                    CGRectGetMidY(bounds) - fudge);
+            
+            // vertical
+            CGContextMoveToPoint(ctx,
+                                 CGRectGetMidX(bounds) - fudge,
+                                 0);
+            CGContextAddLineToPoint(ctx,
+                                    CGRectGetMidX(bounds) - fudge,
+                                    CGRectGetMaxY(bounds) - fudge);
+            CGContextStrokePath(ctx);
+        }];
     });
     return image;
 }
@@ -175,6 +173,10 @@
                                             - _touchRadius);
 }
 
+- (CGSize)sizeThatFits:(CGSize)size {
+    return CGSizeMake(size.width, size.width);
+}
+
 - (CGFloat)radius {
     return [[_colorWheelFilter valueForKey:@"inputRadius"] doubleValue];
 }
@@ -202,22 +204,12 @@
 }
 
 - (void)setSelectedColor:(UIColor *)selectedColor {
-    [self setSelectedColor:selectedColor animated:NO];
-}
-
-- (void)setSelectedColor:(UIColor *)selectedColor animated:(BOOL)animated {
     if ([_selectedColor isEqual:selectedColor]) {
         return;
     }
 
     _selectedColor = selectedColor;
     [self setNeedsLayout];
-
-    if (animated) {
-        [UIView animateWithDuration:0.25 animations:^{
-            [self layoutIfNeeded];
-        }];
-    }
 }
 
 - (void)updateSelectionView {
