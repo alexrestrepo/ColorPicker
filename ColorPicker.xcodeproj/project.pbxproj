@@ -21,6 +21,7 @@
 /* Begin PBXFileReference section */
 		FAC9165E26139D9000A6CCFB /* PickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		FAC9165F26139D9000A6CCFB /* PickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
+		FAC916702613B2EF00A6CCFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FAE9E56024CAA428008DC28F /* ColorPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE9E56324CAA428008DC28F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FAE9E56424CAA428008DC28F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		FAE9E55724CAA428008DC28F = {
 			isa = PBXGroup;
 			children = (
+				FAC916702613B2EF00A6CCFB /* README.md */,
 				FAE9E56224CAA428008DC28F /* ColorPicker */,
 				FAE9E56124CAA428008DC28F /* Products */,
 			);
